@@ -1,0 +1,31 @@
+{% extends 'basic_app/base.html'%}
+{%block body_block%}
+<br><br><br><br>
+<center>
+<div class="card" align="center" style="width:500px">
+  <div id="login_header bg-success" class="card-header">
+				<h3>Sign In</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+<div class="card-body bg-dark text-light">
+  <form action="{% url 'basic_app:otp_verification' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="emailID">
+    <label for="otp">Enter OTP</label>
+    <br>
+    <input type="password" name="otp">
+    <br>
+    <br>
+    <input type="submit" class="btn btn-outline-light" name="" value="Verify OTP">
+    <br>
+    <br>
+  </form>
+</div>
+</div>
+</center>
+{{insert_me}}
+{%endblock%}

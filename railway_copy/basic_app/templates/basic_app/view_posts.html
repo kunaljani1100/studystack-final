@@ -1,0 +1,71 @@
+{% extends "basic_app/base.html" %}
+{% load static %}
+
+{% block body_block %}
+{% ifnotequal group_no -1 %}
+<div class="login_header bg-dark text-light" style="width:1100px">
+<form action="{% url 'basic_app:view_posts' %}" method="post">
+  {% csrf_token %}&emsp;&emsp;
+<label for="membername"><h1>New Question</h1></label>
+<br>&emsp;&emsp;
+<textarea rows="3" cols="100" name="post_content"></textarea>
+<br>
+<input type="hidden" name="gid" value="{{group_no}}">
+<br>&emsp;&emsp;
+<input type="submit" class="btn btn-outline-light" name="" value="Ask Question">
+<br><br>
+</form>
+</div>
+<br><br>
+{% endifnotequal %}
+ {% if association %}
+ {% for a in association %}
+ <div class="login_header" style="width:1100px">
+    <div class="card-body bg-success">
+    <h1><p>Question:</p></h1>
+        <h4>Post Creator: {{ a.username }}</h4>
+   <p>{{ a.post_content }}</p>
+   </div>
+   <div class="card-body bg-success">
+     <h1><p>Answers:</p></h1>
+   {% ifequal contributed 1 %}
+
+   {% for c in clist %}
+     {% ifequal c.groupID a.groupID %}
+     {% ifequal c.group_name a.group_name %}
+     {% ifequal c.post_content a.post_content %}
+     <p>{{c.username}}: {{c.comment}}</p>
+     {% endifequal %}
+     {% endifequal %}
+     {% endifequal %}
+   {% endfor %}
+
+   {% else %}
+
+   <p>Please contribute an answer before viewing other answers.</p>
+
+   {% endifequal %}
+
+   <form action="{% url 'basic_app:add_comment' %}" method="post">
+     {% csrf_token %}
+     <input type="hidden" name="gd" value="{{a.groupID}}">
+     <input type="hidden" name="uname" value="{{a.username}}">
+     <input type="hidden" name="gname" value="{{a.group_name}}">
+     <input type="hidden" name="pcontent" value="{{a.post_content}}">
+     <textarea rows="2" cols="100" name="comment" value=""></textarea>
+     <br>
+     <input type="submit" name="btn btn-outline-dark" value="Post Comment">
+     </form>
+   </div>
+ </div>
+ <br>
+ {% endfor %}
+
+ {% else %}
+ {% ifnotequal group_no -1 %}
+   <p>No access record found.</p>
+   {% endifnotequal %}
+ {% endif %}
+
+{{insert_me}}
+{% endblock %}

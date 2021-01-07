@@ -1,0 +1,25 @@
+{% extends "basic_app/base.html" %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="djangtwo">
+ {% if station %}
+ <table border="2px">
+   <thead>
+   <th>Station Code</th>
+   <th>Station Name</th>
+ </thead>
+ {% for s in station %}
+ <tr>
+   <td>{{ s.station_code }}</td>
+   <td>{{ s.station_name }}</td>
+ </tr>
+ {% endfor %}
+ </table>
+ {% else %}
+   <p>No access record found.</p>
+ {% endif %}
+</div>
+
+{% endblock %}

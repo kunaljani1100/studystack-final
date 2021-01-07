@@ -1,0 +1,23 @@
+{% extends "basic_app/base.html" %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="djangtwo">
+ {% if association %}
+
+ {% for a in association %}
+   <form action="{% url 'basic_app:view_members_in_groups' %}" method="post">
+
+   <a href="#" class="btn btn-outline-dark">
+        <p class="card-text">{{ a.group_name }}</p>
+        <p class="card-text">{{ a.username }}</p>
+        <p></p>
+    </a>
+ {% endfor %}
+ {% else %}
+   <p>No access record found.</p>
+ {% endif %}
+</div>
+{{insert_me}}
+{% endblock %}

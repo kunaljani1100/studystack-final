@@ -1,0 +1,28 @@
+{% extends "basic_app/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<h1>Create Group</h1>
+
+<div class="jumbotron bg-warning text-light" align="center">
+&emsp;&emsp;&emsp;
+<div class="card bg-dark text-light" align="center" style="width:300px">
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<div class="card-body bg-success text-light" align="center">
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+    <form action="{% url 'basic_app:quiz' %}" method="post">
+      {% csrf_token %}
+<label for="group_name">Group name</label>
+  <br>
+<input type="text" name="group_name">
+  <br>
+  <br>
+  <input type="submit" class="btn btn-outline-light" name="" value="Create group">
+  </form>
+</div>
+</div>
+<br><br><br><br><br><br><br>
+</div>
+{{insert_me}}
+{% endblock %}

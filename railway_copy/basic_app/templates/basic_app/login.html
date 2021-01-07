@@ -1,0 +1,36 @@
+{% extends 'basic_app/base.html'%}
+{%block body_block%}
+<br><br><br><br>
+<center>
+<div class="card" align="center" style="width:500px">
+  <div id="login_header" class="card-header bg-success">
+				<h3>Sign In</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+<div class="card-body bg-dark text-light">
+  <form action="{% url 'basic_app:user_login' %}" method="post">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <br>
+    <input type="text" name="username">
+    <br>
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" name="password" >
+    <br>
+    <br>
+    <input type="submit" class="btn btn-outline-light" name="" value="Login">
+    <br>
+    <br>
+  </form>
+  <a class="navbar-link" href="{% url 'basic_app:account_recovery' %}">Forgot username or password?</a>
+</div>
+</div>
+</center>
+{{insert_me}}
+{%endblock%}

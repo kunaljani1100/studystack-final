@@ -1,0 +1,21 @@
+{% extends "basic_app/base.html" %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="card-body">
+    <form action="{% url 'basic_app:add_post' %}" method="post">
+      {% csrf_token %}
+  <label for="groupID">GroupID of member</label>
+  <br>
+  <input type="text" name="groupID">
+  <label for="membername">Content</label>
+  <br>
+  <input type="textare" name="post_content">
+
+  <br>
+  <input type="submit" class="btn btn-outline-dark" name="" value="Add member">
+  </form>
+</div>
+{{insert_me}}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'basic_app/base.html'%}
+{%block body_block%}
+<br><br><br><br>
+<center>
+<div class="card" align="center" style="width:500px">
+  <div id="login_header" class="card-header bg-success">
+				<h3>Sign In</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+<div class="card-body bg-dark text-light">
+  <form action="{% url 'basic_app:account_recovery' %}" method="post">
+    {% csrf_token %}
+    <label for="emailID">Email ID</label>
+    <br>
+    <input type="text" name="emailID">
+    <br>
+    <br>
+    <input type="submit" class="btn btn-outline-light" name="" value="Send OTP to email">
+    <br>
+    <br>
+  </form>
+</div>
+</div>
+</center>
+{{insert_me}}
+{%endblock%}
